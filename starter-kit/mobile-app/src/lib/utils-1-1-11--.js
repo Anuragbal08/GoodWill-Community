@@ -35,80 +35,8 @@ export const search = (query) => {
   });
 };
 
-export const postsearch = () => {
-  return fetch(`${serverUrl}/api/post`, {
-    method: 'GET',
-    mode: 'no-cors',
-    cache: 'no-cache',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then((response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText || response.message || response.status);
-    } else {
-      return response.json();
-    }
-  });
-};
-
-export const replysearch = (query) => {
-  const userID = query.userID ? `userID=${query.userID}` : ''
-  return fetch(`${serverUrl}/api/reply${userID}`, {
-    method: 'GET',
-    mode: 'no-cors',
-    cache: 'no-cache',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then((response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText || response.message || response.status);
-    } else {
-      return response.json();
-    }
-  });
-};
-
 export const add = (item) => {
   return fetch(`${serverUrl}/api/resource`, {
-    method: 'POST',
-    mode: 'no-cors',
-    cache: 'no-cache',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(item)
-  }).then((response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText || response.message || response.status);
-    } else {
-      return response.json();
-    }
-  });
-};
-
-
-export const wallpost = (item) => {
-  return fetch(`${serverUrl}/api/post`, {
-    method: 'POST',
-    mode: 'no-cors',
-    cache: 'no-cache',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(item)
-  }).then((response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText || response.message || response.status);
-    } else {
-      return response.json();
-    }
-  });
-};
-
-export const replypost = (item) => {
-  return fetch(`${serverUrl}/api/reply`, {
     method: 'POST',
     mode: 'no-cors',
     cache: 'no-cache',

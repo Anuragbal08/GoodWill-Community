@@ -1,15 +1,7 @@
 import React from 'react';
-import {
-  StyleSheet,
-  FlatList,
-  View,
-  Button,
-  Text,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import { StyleSheet,Button, FlatList, View, Text, TouchableOpacity, Alert } from 'react-native';
 
-import {search, userID} from '../lib/utils';
+import { search, userID } from '../lib/utils'
 
 const styles = StyleSheet.create({
   flatListView: {
@@ -61,31 +53,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const MyResources = function ({navigation}) {
+const AllEvents = function ({ navigation }) {
   const [items, setItems] = React.useState([]);
 
   React.useEffect(() => {
     navigation.addListener('focus', () => {
-      search({userID: userID()})
+      search({ userID: userID() })
         .then(setItems)
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
-          Alert.alert(
-            'ERROR',
-            'Please try again. If the problem persists contact an administrator.',
-            [{text: 'OK'}],
-          );
+          Alert.alert('ERROR', 'Please try again. If the problem persists contact an administrator.', [{text: 'OK'}]);
         });
-    });
+    })
   }, []);
 
   const Item = (props) => {
     return (
-      <TouchableOpacity
-        style={styles.itemTouchable}
-        onPress={() => {
-          navigation.navigate('Edit Donation', {item: props});
-        }}>
+      <TouchableOpacity style={styles.itemTouchable}
+          onPress={() => { navigation.navigate('Edit Events', { item: props }); }}>
         <View style={styles.itemView}>
           <Text style={styles.itemName}>{props.name}</Text>
           <Text style={styles.itemQuantity}> ( {props.quantity} ) </Text>
@@ -94,7 +79,7 @@ const MyResources = function ({navigation}) {
       </TouchableOpacity>
     );
   };
-
+  
   if (items.length > 0) {
     return (
       <View>
@@ -113,19 +98,19 @@ const MyResources = function ({navigation}) {
     return (
       <View style={styles.flatListView}>
         <View style={styles.listButtons}>
-          <Button title='Add Donation' onPress=
+          <Button title='Create Event' onPress=
           {() => {
-            navigation.navigate('AddResource');
+            navigation.navigate('AddEvents');
           }} />
-          <Button title='Edit Donation' onPress=
+          <Button title='Edit Event' onPress=
           {() => {
-            navigation.navigate('EditResource');
+            navigation.navigate('AddEvents');
           }} />
         </View>
 
         <View style={styles.emptyListView}>
           <Text style={styles.emptyListText}>
-            You currently have no donations listed
+            You currently have no events planned
           </Text>
         </View>
       </View>
@@ -133,4 +118,4 @@ const MyResources = function ({navigation}) {
   }
 };
 
-export default MyResources;
+export default AllEvents;

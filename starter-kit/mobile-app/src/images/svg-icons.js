@@ -121,3 +121,19 @@ export const UncheckedIcon = (props) => {
     </Svg>
   );
 };
+
+export const PostIcon = (props) => {
+  const height = props.height || 28;
+  const width = props.width || 28;
+  const fill = props.fill || '#000';
+  const stroke = props.stroke || 'none';
+  const strokeWidth = props.strokeWidth || 0;
+
+  return (
+    <Svg height={height} width={width} viewBox='0 0 32 32'>
+      <Path fill={fill} stroke={stroke} strokeLinecap='round' strokeLinejoin='round' strokeWidth={strokeWidth}
+            d='M16.61,2.21a1,1,0,0,0-1.24,0L1,13.42,2.24,15,4,13.62V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V13.63L29.76,15,31,13.43ZM18,26H14V18h4Zm2,0h0V18a2,2,0,0,0-2-2H14a2,2,0,0,0-2,2v8H6V12.06L16,4.27l10,7.8V26Z'>
+      </Path>
+    </Svg>
+  );
+};

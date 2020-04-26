@@ -124,10 +124,7 @@ const SearchResources = function ({ route, navigation }) {
           items={[
               { label: 'Food', value: 'Food' },
               { label: 'Help', value: 'Help' },
-              { label: 'Help', value: 'Help' },
-              { label: 'Grocery', value: 'Grocery' },
-              { label: 'Restautrant', value: 'Restautrant'},
-              { label: 'Super market', value: 'market' }
+              { label: 'Other', value: 'Other' }
           ]}
         />
         <Text style={styles.label}>Name</Text>

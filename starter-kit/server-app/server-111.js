@@ -29,7 +29,6 @@ app.get('/', (req, res) => {
  */
 app.get('/api/session', (req, res) => {
   assistant
-
     .session()
     .then(sessionid => res.send(sessionid))
     .catch(err => handleError(res, err));
@@ -134,34 +133,6 @@ app.get('/api/resource', (req, res) => {
     .catch(err => handleError(res, err));
 });
 
-app.get('/api/post', (req, res) => {
-  cloudant
-    .findPost()
-    .then(data => {
-      if (data.statusCode != 200) {
-        res.sendStatus(data.statusCode)
-      } else {
-        res.send(data.data)
-      }
-    })
-    .catch(err => handleError(res, err));
-});
-
-app.get('/api/reply', (req, res) => {
-  cloudant
-    .findReply()
-    .then(data => {
-      if (data.statusCode != 200) {
-        res.sendStatus(data.statusCode)
-      } else {
-        res.send(data.data)
-      }
-    })
-    .catch(err => handleError(res, err));
-});
-
-
-
 /**
  * Create a new resource
  *
@@ -203,69 +174,6 @@ app.post('/api/resource', (req, res) => {
 
   cloudant
     .create(type, name, description, quantity, location, contact, userID)
-    .then(data => {
-      if (data.statusCode != 201) {
-        res.sendStatus(data.statusCode)
-      } else {
-        res.send(data.data)
-      }
-    })
-    .catch(err => handleError(res, err));
-});
-
-app.post('/api/post', (req, res) => {
-  if (!req.body.description) {
-    return res.status(422).json({ errors: "Any comment needs to be mentioned"});
-  }
-  const type = 'post';
-  const description = req.body.description || '';
-  const userID = req.body.userID || '';
-
-
-  cloudant
-    .postcreate(description, userID)
-    .then(data => {
-      if (data.statusCode != 201) {
-        res.sendStatus(data.statusCode)
-      } else {
-        res.send(data.data)
-      }
-    })
-    .catch(err => handleError(res, err));
-});
-
-app.post('/api/reply', (req, res) => {
-  if (!req.body.description) {
-    return res.status(422).json({ errors: "Any comment needs to be mentioned"});
-  }
-  const type = 'reply';
-  const description = req.body.description || '';
-  const userID = req.body.userID || '';
-
-
-  cloudant
-    .replycreate(description, userID)
-    .then(data => {
-      if (data.statusCode != 201) {
-        res.sendStatus(data.statusCode)
-      } else {
-        res.send(data.data)
-      }
-    })
-    .catch(err => handleError(res, err));
-});
-
-app.post('/api/reply', (req, res) => {
-  if (!req.body.description) {
-    return res.status(422).json({ errors: "Any comment needs to be mentioned"});
-  }
-  const type = 'reply';
-  const description = req.body.description || '';
-  const userID = req.body.userID || '';
-
-
-  cloudant
-    .postreply(description, userID)
     .then(data => {
       if (data.statusCode != 201) {
         res.sendStatus(data.statusCode)

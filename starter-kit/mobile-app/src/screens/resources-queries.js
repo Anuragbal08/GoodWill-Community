@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const SearchResources = function ({ route, navigation }) {
-  const [query, setQuery] = React.useState({ type: 'Food', name: '' });
+const AskQuestion = function ({ route, navigation }) {
+  const [query, setQuery] = React.useState({ type: 'New Question', name: '' });
   const [items, setItems] = React.useState([]);
   const [info, setInfo] = React.useState('');
 
@@ -124,10 +124,7 @@ const SearchResources = function ({ route, navigation }) {
           items={[
               { label: 'Food', value: 'Food' },
               { label: 'Help', value: 'Help' },
-              { label: 'Help', value: 'Help' },
-              { label: 'Grocery', value: 'Grocery' },
-              { label: 'Restautrant', value: 'Restautrant'},
-              { label: 'Super market', value: 'market' }
+              { label: 'Other', value: 'Other' }
           ]}
         />
         <Text style={styles.label}>Name</Text>
@@ -138,7 +135,7 @@ const SearchResources = function ({ route, navigation }) {
           onSubmitEditing={searchItem}
           returnKeyType='send'
           enablesReturnKeyAutomatically={true}
-          placeholder='e.g., Tomotatoes'
+          //placeholder='e.g., Tomotatoes'
           blurOnSubmit={false}
         />
         <TouchableOpacity onPress={searchItem}>
@@ -157,4 +154,4 @@ const SearchResources = function ({ route, navigation }) {
   );
 };
 
-export default SearchResources;
+export default AskQuestion;
