@@ -1,78 +1,68 @@
-# Community collaboration in the context of COVID-19
-
-This solution starter was created by technologists from IBM.
+# GoodWill Community App in the context of COVID-19
 
 ## Authors
 
-- Henry Nash
-- Va Barbosa
-- Javier Torres
-- Omer Arad
-- JJ Asghar
-- Jody Burks
-- Robert Loredo
-- Debbie Kestin Schildkraut
-- Bruce Weed
+- Dipanwita Dass
+- Awantika Srivastava
+- Anurag Bal
 
 ## Contents
 
 1. [Overview](#overview)
 2. [The idea](#the-idea)
 3. [How it works](#how-it-works)
-4. [Diagrams](#diagrams)
+4. [Components](#diagrams)
 5. [Documents](#documents)
 6. [Technology](#technology)
 7. [Getting started](#getting-started)
 8. [Resources](#resources)
-9. [License](#license)
+
 
 ## Overview
 
 ### What's the problem?
 
-There is a growing interest in enabling communities to cooperate among themselves to solve these problems, whether it be to advertise where supplies are held, offer assistance for collections, or other local services like volunteer deliveries.
-
-In times of crisis, such as the 2020 SARS-COV-2 (COVID-19 or "Novel Coronavirus") crisis, while federal and local governments may be rolling out broad programs, cooperation at the local level is usually the most effective way of getting help to where it is most needed as quickly as possible. Traditional social media is one way of communicating within a community, but this is (by its very design) not locally focused, and often not sufficiently structured to enable rapid discovery of help needed.
-
-In the COVID-19 crisis, we have already seen shortages of local food, medical equipment, and other supplies. In addition, the recommended (or required) self-isolation and social distancing measures can compound the problem by preventing people from easily getting to locations with the best stocks of supplies.
-
-What is needed is a solution that empowers communities to easily connect and provide this information to each other.
+In the current pandemic situation where whole world has adapted social distancing and home lockdown to keep themself safe, We are facing issue in getting daily need items and many services.
+Also as schools , college, Gym and many other institues are closed in this situation to avoid any people gathering, We still need to enhance our skills and health which is also the best use of time given by home lockdown.
+In this tough situation, People around us (Our community) can help us in many ways however there is no channel to get all information , requests and people in one place to help each other.
+To solve this issue and to help people around us , We have created "GoodWill Community App" to help The community by community.
 
 ### How can technology help?
 
-Mobile, web, and cloud services enable rapid deployment of applications that can empower cooperation in the community. [Watson Assistant](https://www.ibm.com/cloud/watson-assistant/) is a service on [IBM Cloud](https://cloud.ibm.com) that allows you to build, train, and deploy conversational interactions into any application, device, or channel.
-
-Creating a chatbot using Watson Assistant can help you address the issues that your users may face while trying to gather the necessary information. Embedding location/routing services (like [HERE](https://developer.here.com/products/routing)) can enhance such applications, giving optimum guidance so that they are outside of their isolation location for the minimum amount of time.
+Technology can  help in bringing people close virtually and helping in getting all the daily services and items.
+An mobile app will using IBM cloud services  and Watson Assistant service can help in resolving many issue and reducing stress in this crsis. It will empower  cooperation in the community 
+Creating a chatbot using Watson Assistant can help you address the issues that your users may face while trying to gather the necessary information.
 
 ## The idea
 
-The goal is to provide a mobile application, along with server-side components, that serves as the basis for developers to build out a community cooperation application that addresses local needs for food, equipment, and resources.
-It would allow both "Suppliers" (such as a store or a community member who has produce they can sell or distribute) to make people aware of what the have; and consumers ("Recipients") to locate where these supplies are, and, if necessary, guide them to the appropriate locations to pick them up.
+The goal is to provide a mobile application for the community to facilitate sharing of goods,support and thought in this tough time .
 
-## How it works
 
-A Supplier (who may be a regular resident, a small business, a voluntary organization, etc.) that has food, supplies, resources, or other essentials they can provide opens the mobile application and fills out a brief form that indicates what they have. This information is then stored in a database in the IBM Cloud.
+## Components 
 
-A Recipient, who is in need of food, supplies, resources, or other essentials, opens the mobile application and can use the chat interface to locate supplies near them. For instance, they might type "Where can I find bread?" or "Can someone collect my shopping for me?" The mobile application then accesses the database (after first understanding the question via Watson Assistant) and then displays a map showing locally where they can find what they are looking for.
+1. Donate and Search  - This app always the user to donate any item.A user can select what they want and in what quantity they want  to donate, it may be food ,money etc.
+they can  opens the mobile application and fills out a brief form that indicates what they have donated .This information is then stored in a database in the IBM Cloud.
+The donated items can be searched by other recipents who are in need of the items. The requested item is searched in the cloud Database and is returned if the new iteam is found .
+The mobile application then accesses the database (after first understanding the question via Watson Assistant) and then displays a map showing locally where they can find what they are looking for.
 
-## Diagrams
 
-![Cooperation architecture diagram](/images/architecture-diagram.png)
+2. Discussions - This feature will allow all the users to post any information on the wall and anyone can like the information and even reply with some comments or feedback. Which other users can find useful while accesing that information.This is a good feature to have as it will help in staying virtually connected in this time .The user can also comment and like on any post 
+The Watson assistant will also check for any wrong comment and will banned the user from using the app 
 
-This solution starter idea combines a chat interface (Watson Assistant), data storage to hold the status of supplies available, and location services with real-time information to get users the information they need.
+3. Events - This feature is having Links of all the events like online training, meditation sessions,  which people can attend in lockdown time . This will help people to enhance their skill and also find themself connected with other groups.User can also search any event of their choice .
 
-1. The Recipient launches the mobile app and can access information across multiple services.
-1. The Recipient can ask questions to Watson Assistant and get answers on food/service availability questions.
-1. The Supplier can post the availability of stock or services they can provide, as well as locate the items they need.
-1. The Recipient can obtain geolocation data to plot routes to collect (or drop off) supplies using HERE Location Services.
 
-## Documents
+4. Notice - This is good feature  to cascasde any important notices to the member.This will also help in stopping  rumours.
 
-Trusted sources for COVID-19 Information:
-- [CDC COVID-19 FAQ](https://www.cdc.gov/coronavirus/2019-ncov/faq.html)
-- [WHO COVID-19 page](https://www.who.int/health-topics/coronavirus)
-- [Johns Hopkins University Coronavirus (includes tracking map)](https://coronavirus.jhu.edu)
-- [National Foundation for Infectious Diseases](https://www.nfid.org/infectious-diseases/frequently-asked-questions-about-novel-coronavirus-2019-ncov/)
+5. Helpline  - This feature provide all the important contacts like police phone number ,emergency number etc .This is a static page with required infomation .It also have url link to WHO website.So anyone can get the latest update directly from the reliable source .Only admin can changed the details on this page.  
+
+6. Local services - this feature provide necessary contact details for servcies like local grocery ,restruatant etc.This is a very good feature as it provide information about the open shops nearby. It will also provide the inventory details to all the user ,which can help in managing the stocks.
+
+7. Group - Groups where prople can create their own group and help each other in faster way.this is a proposed feature.
+
+8. Members - This will have contact information of all users which are using Goodwill Community app .As of now it is a static page.going forward will be add the user details who are using this app.
+
+9. Chat -this feature will have watson assistant trained to answer all the question related tp  covid -19 FAQ .
 
 ## Technology
 
@@ -120,7 +110,7 @@ Trusted sources for COVID-19 Information:
         - [Java Development Kit](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)
         - [Android Studio](https://developer.android.com/studio/index.html) - add Android 9 (Pie) SDK & configure `ANDROID_HOME`
         - [Create an Android Virtual Device (AVD)](https://developer.android.com/studio/run/managing-avds.html) - with Pie image (API Level 28)
-- Clone the [repository](https://github.com/Call-for-Code/Solution-Starter-Kit-Cooperation-2020).
+- Clone the [repository](https://github.com/Call-for-Code/Solution-Starter-Kit-Cooperation-2020). ##own repo 
 
 ### Steps
 
@@ -163,8 +153,7 @@ To access these services, you'll need an API key. Follow the instructions outlin
 To set up and launch the server application:
 
 1. Go to the `starter-kit/server-app` directory of the cloned repo.
-1. Copy the `.env.example` file in the `starter-kit/server-app` directory, and create a new file named `.env`.
-1. Edit the newly created `.env` file and update the `ASSISTANT_URL`, `ASSISTANT_ID`, and `ASSISTANT_IAM_APIKEY` with the values from the dialog skill's API Detail page in Watson Assistant, from Step 1. Also, update the `CLOUDANT_ID` and `CLOUDANT_IAM_APIKEY` with the values from the service credential you created in Step 2. (Note that the `username` from the credential is what should be used for the `CLOUDANT_ID`.)
+1. Edit the  existing  `.env` file and update the `ASSISTANT_URL`, `ASSISTANT_ID`, and `ASSISTANT_IAM_APIKEY` with the values from the dialog skill's API Detail page in Watson Assistant, from Step 1. Also, update the `CLOUDANT_ID` and `CLOUDANT_IAM_APIKEY` with the values from the service credential you created in Step 2. (Note that the `username` from the credential is what should be used for the `CLOUDANT_ID`.)
 1. Edit the **name** value in the `manifest.yml` file to your application name (for example, _my-app-name_).
 1. From a terminal:
     1. Go to the `starter-kit/server-app` directory of the cloned repo.
@@ -184,8 +173,8 @@ To set up and launch the server application:
 To run the mobile application (using the Xcode iOS Simulator or Android Studio Emulator):
 
 1. Go to the `starter-kit/mobile-app` directory of the cloned repo.
-1. Copy the `.env.example` file in the `starter-kit/mobile-app` directory, and create a file named `.env`.
-1. Edit the newly created `.env` file:
+
+1. Edit the  existing  `.env` file:
     - Update the `STARTER_KIT_SERVER_URL` with the URL to the server app launched in the previous step.
         > **Note**: If you are running the server locally and testing with the Android Emulator set the `STARTER_KIT_SERVER_URL` using the local machine's URL (e.g., `http://10.0.2.2:3000`) instead of `localhost`
     - Update the `HERE_APIKEY` with the API key generated in the HERE Developer Portal.
