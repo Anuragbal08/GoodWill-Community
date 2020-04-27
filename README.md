@@ -198,6 +198,7 @@ With the application running in the simulator/emulator, you should be able to na
 ![Chat Screen](/images/5-screen-chat.png)
 ![Map1 Screen](/images/3-screen-map.png)
 ![Map2 Screen](/images/4-screen-map.png)
+![Map3 Screen](/images/discussion.png)
 
 ## Resources
 
