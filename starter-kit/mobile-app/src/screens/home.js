@@ -114,15 +114,7 @@ const Home = ({navigation}) => (
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() =>
-            Linking.openURL('https://developer.ibm.com/callforcode')
-          }>
-          <View style={{alignItems: 'center'}}>
-            <Image source={require('../images/groups.png')} />
-            <Text>Groups</Text>
-          </View>
-        </TouchableOpacity>
+        
 
         <TouchableOpacity
           onPress={() =>{

@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const SearchResources = function ({ route, navigation }) {
-  const [query, setQuery] = React.useState({ type: 'Food', name: '' });
+const SearchEvents = function ({ route, navigation }) {
+  const [query, setQuery] = React.useState({ type: 'Volunteering', name: '' });
   const [items, setItems] = React.useState([]);
   const [info, setInfo] = React.useState('');
 
@@ -122,9 +122,10 @@ const SearchResources = function ({ route, navigation }) {
           value={query.type}
           onValueChange={(t) => setQuery({ ...query, type: t })}
           items={[
-              { label: 'Food', value: 'Food' },
-              { label: 'Help', value: 'Help' },
-              { label: 'Other', value: 'Other' }
+            { label: 'Volunteering', value: 'Volunteering' },
+            { label: 'Recreation', value: 'Recreation' },
+            { label: 'Mindfulness', value: 'Mindfulness' },
+            { label: 'Other', value: 'Other' }
           ]}
         />
         <Text style={styles.label}>Name</Text>
@@ -135,7 +136,7 @@ const SearchResources = function ({ route, navigation }) {
           onSubmitEditing={searchItem}
           returnKeyType='send'
           enablesReturnKeyAutomatically={true}
-          placeholder='e.g., Tomotatoes'
+          placeholder='e.g., Food Distribution'
           blurOnSubmit={false}
         />
         <TouchableOpacity onPress={searchItem}>
@@ -154,4 +155,4 @@ const SearchResources = function ({ route, navigation }) {
   );
 };
 
-export default SearchResources;
+export default SearchEvents;

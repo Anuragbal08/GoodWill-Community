@@ -70,7 +70,7 @@ const AllEvents = function ({ navigation }) {
   const Item = (props) => {
     return (
       <TouchableOpacity style={styles.itemTouchable}
-          onPress={() => { navigation.navigate('Edit Events', { item: props }); }}>
+          onPress={() => { navigation.navigate('Search Events', { item: props }); }}>
         <View style={styles.itemView}>
           <Text style={styles.itemName}>{props.name}</Text>
           <Text style={styles.itemQuantity}> ( {props.quantity} ) </Text>
@@ -82,17 +82,26 @@ const AllEvents = function ({ navigation }) {
   
   if (items.length > 0) {
     return (
+    <ScrollView>
+
       <View>
       <View style={styles.listButtons}>
-          <Button title='Add Donation' />
-          <Button title='Edit Donation' />
-      </View>
+          <Button title='Create Event' onPress=
+          {() => {
+            navigation.navigate('AddEvents');
+          }} />
+          <Button title='Upcoming Event' onPress=
+          {() => {
+            navigation.navigate('SearchEvents');
+          }} />
+        </View>
       <FlatList
         style={styles.flatListView}
         data={items}
         renderItem={({item}) => <Item {...item} />}
         keyExtractor={(item) => item.id || item['_id']}
       /></View>
+      </ScrollView>
     );
   } else {
     return (
@@ -102,16 +111,16 @@ const AllEvents = function ({ navigation }) {
           {() => {
             navigation.navigate('AddEvents');
           }} />
-          <Button title='Edit Event' onPress=
+          <Button title='Upcoming Event' onPress=
           {() => {
-            navigation.navigate('AddEvents');
+            navigation.navigate('SearchEvents');
           }} />
         </View>
-
         <View style={styles.emptyListView}>
           <Text style={styles.emptyListText}>
             You currently have no events planned
           </Text>
+
         </View>
       </View>
     );

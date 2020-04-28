@@ -5,12 +5,13 @@ import PickerSelect from 'react-native-picker-select';
 import { CheckedIcon, UncheckedIcon } from '../images/svg-icons';
 import Geolocation from '@react-native-community/geolocation';
 
+
 import { add, userID } from '../lib/utils'
 
 const styles = StyleSheet.create({
   outerView: {
     flex: 1,
-    padding: 22,
+    padding: 2,
     backgroundColor: '#FFF'
   },
   splitView: {
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   typeArea: {
-    width: '40%'
+    width: '50%'
   },
   label: {
     fontFamily: 'IBMPlexSans-Medium',
@@ -31,7 +32,8 @@ const styles = StyleSheet.create({
     borderColor: '#D0E2FF',
     borderWidth: 2,
     padding: 16,
-    marginBottom: 25
+    marginBottom: 25,
+    width: 250
   },
   quantityArea: {
     width: '40%'
@@ -76,11 +78,11 @@ const styles = StyleSheet.create({
 });
 
 const AddEvents = function ({ navigation }) {
-  const clearItem = { userID: userID(), type: 'Food', name: '', description: '', location: '', contact: '', quantity: '1' }
+  const clearItem = { userID: userID(), type: 'Volunteering', name: '', description: '', location: '', vlocation: '', contact: '', time: '' }
   const [item, setItem] = React.useState(clearItem);
   const [useLocation, setUseLocation] = React.useState(true);
   const [position, setPosition] = React.useState({})
-
+  
   React.useEffect(() => {
     navigation.addListener('focus', () => {
       Geolocation.getCurrentPosition((pos) => {
@@ -132,24 +134,16 @@ const AddEvents = function ({ navigation }) {
             value={item.type}
             onValueChange={(t) => setItem({ ...item, type: t })}
             items={[
-                { label: 'Food', value: 'Food' },
-                { label: 'Help', value: 'Help' },
+                { label: 'Volunteering', value: 'Volunteering' },
+                { label: 'Recreation', value: 'Recreation' },
+                { label: 'Mindfulness', value: 'Mindfulness' },
                 { label: 'Other', value: 'Other' }
             ]}
           />
         </View>
         <View style={styles.quantityArea}>
-          <Text style={styles.label}>Quantity</Text>
-          <TextInput
-            style={styles.textInput}
-            value={item.quantity}
-            onChangeText={(t) => setItem({ ...item, quantity: t})}
-            onSubmitEditing={sendItem}
-            returnKeyType='send'
-            enablesReturnKeyAutomatically={true}
-            placeholder='e.g., 10'
-            keyboardType='numeric'
-          />
+          
+          
         </View>
       </View>
 
@@ -161,7 +155,7 @@ const AddEvents = function ({ navigation }) {
         onSubmitEditing={sendItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
-        placeholder='e.g., Tomotatoes'
+        placeholder='e.g., Food Distribution'
         blurOnSubmit={false}
       />
       <Text style={styles.label}>Contact</Text>
@@ -182,36 +176,34 @@ const AddEvents = function ({ navigation }) {
         onSubmitEditing={sendItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
-        placeholder='e.g., cans of tomatoes'
+        placeholder='e.g., Distribute meals'
       />
-      <Text style={styles.label}>Location</Text>
-      <View style={styles.checkboxContainer}>
-        <TouchableOpacity onPress={toggleUseLocation}>
-          {
-            (useLocation)
-              ?
-              <CheckedIcon height='18' width='18'/>
-              :
-              <UncheckedIcon height='18' width='18'/>
-          }
-        </TouchableOpacity>
-        <Text style={styles.checkboxLabel}> Use my current location </Text>
-      </View>
+      <Text style={styles.label}>Virtual Link (if any)</Text>
       <TextInput
-        style={useLocation ? styles.textInputDisabled : styles.textInput}
-        value={item.location}
-        onChangeText={(t) => setItem({ ...item, location: t})}
+        style={styles.textInput}
+        value={item.vlocation}
+        onChangeText={(t) => setItem({ ...item, vlocation: t})}
         onSubmitEditing={sendItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
-        placeholder='street address, city, state'
-        editable={!useLocation}
+        placeholder='e.g., Zoom link'
+      />
+      <Text style={styles.label}>Event time</Text>
+      <TextInput
+        style={styles.textInput}
+        value={item.time}
+        onChangeText={(t) => setItem({ ...item, time: t})}
+        onSubmitEditing={sendItem}
+        returnKeyType='send'
+        enablesReturnKeyAutomatically={true}
+        placeholder='e.g., 24-04-2020 20:30 IST'
       />
 
       {
         item.type !== '' &&
         item.name.trim() !== '' &&
         item.contact.trim() !== '' &&
+        item.time.trim() !== '' &&
         <TouchableOpacity onPress={sendItem}>
           <Text style={styles.button}>Add</Text>
         </TouchableOpacity>

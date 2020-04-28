@@ -1,4 +1,11 @@
 import React from 'react';
+import { ScrollView } from 'react-native-gesture-handler';
+import PickerSelect from 'react-native-picker-select';
+import { CheckedIcon, UncheckedIcon } from '../images/svg-icons';
+import Geolocation from '@react-native-community/geolocation';
+import { SectionList, Button,  StyleSheet,  Image, Alert, TouchableOpacity,  Text,  View,  ShadowPropTypesIOS ,Linking  } from 'react-native';
+
+/*
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import PickerSelect from 'react-native-picker-select';
@@ -205,6 +212,133 @@ const AddService = function ({ navigation }) {
         </TouchableOpacity>
       }
     </ScrollView>
+  );
+};
+
+export default AddService;
+
+*/
+
+const styles = StyleSheet.create({
+  center: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    backgroundColor: '#FFFFFF'
+  },
+  scroll: {
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 25,
+    paddingTop: 75
+  },
+  image: {
+    alignSelf: 'flex-start',
+    height: '20%',
+    width:'50%',
+    resizeMode: 'contain'
+  },
+  title: {
+    fontFamily: 'IBMPlexSans-Medium',
+    fontSize: 36,
+    color: '#323232',
+    paddingBottom: 15
+  },
+  subtitle: {
+    fontFamily: 'IBMPlexSans-Light',
+    fontSize: 24,
+    color: '#323232',
+    textDecorationColor: '#D0E2FF',
+    textDecorationLine: 'underline',
+    paddingBottom: 5,
+    paddingTop: 20
+  },
+  content: {
+    fontFamily: 'IBMPlexSans-Light',
+    color: '#323232',
+    marginTop: 10,
+    marginBottom: 10,
+    fontSize: 16
+  },
+  buttonGroup: {
+    flex: 1,
+    paddingTop: 15,
+    width: 175
+  },
+  button: {
+    backgroundColor: '#1062FE',
+    color: '#FFFFFF',
+    fontFamily: 'IBMPlexSans-Medium',
+    fontSize: 16,
+    overflow: 'hidden',
+    padding: 12,
+    textAlign:'center',
+    marginTop: 15
+  },
+  container: {
+    flexDirection: 'column',
+    height: '90%',
+    padding: 20,
+    fontWeight: 'bold',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    fontSize: 40,
+  },
+  sectionHeader: {
+    paddingTop: 2,
+    paddingLeft: 1  ,
+    paddingRight: 10,
+    paddingBottom: 1,
+    fontSize: 20,
+    fontWeight: 'bold',
+    backgroundColor: 'white',
+  },
+  item: {
+    paddingTop: 2,
+    paddingLeft: 1  ,
+    paddingRight: 10,
+    paddingBottom: 1,
+    fontSize: 20,
+    backgroundColor: 'white',
+  },
+});
+const AddService = function ({ navigation }) {
+
+  return (
+
+<View style={styles.center}>
+    <ScrollView style={styles.scroll}>
+    
+       <Text style={styles.subtitle}>Local services</Text>
+    
+      <Text style={styles.content}>
+       Click on Tab to see nearby Local Services
+      </Text>
+      <Text style={styles.content}>
+      </Text>
+      <Text style={styles.content}>
+      </Text>
+      <View style={styles.buttonGroup}>
+        <TouchableOpacity onPress={() => Alert.alert('Sorry !!!','No open shop nearby')}>
+          <Text style={styles.button}>Grocery</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Alert.alert('Sorry !!!','No open Restautrant nearby')}>
+          <Text style={styles.button}>Restautrant</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Alert.alert('Sorry !!!','No open Carpentry shop nearby')}>
+          <Text style={styles.button}>Carpentry</Text>
+        </TouchableOpacity>
+
+      </View>
+       
+
+
+    </ScrollView>
+  </View>
+
+// <Text style={styles.subtitle}>Important Link </Text>
+
   );
 };
 

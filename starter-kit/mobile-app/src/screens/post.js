@@ -98,7 +98,7 @@ const Post = function ({ navigation }) {
   return (
     <ScrollView style={styles.outerView}>
       <View style={styles.splitView}>
-	<Text style={styles.label}>Description</Text>
+
       	<TextInput
           style={styles.textInput}
           value={item.description}
@@ -106,7 +106,7 @@ const Post = function ({ navigation }) {
           onSubmitEditing={sendItem}
           returnKeyType='send'
           enablesReturnKeyAutomatically={true}
-          placeholder=''
+          placeholder='You want to start a discussion'
         />
       </View>
       {

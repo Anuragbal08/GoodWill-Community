@@ -147,6 +147,32 @@ app.get('/api/post', (req, res) => {
     .catch(err => handleError(res, err));
 });
 
+app.get('/api/event', (req, res) => {
+  cloudant
+    .findmyevents(userID)
+    .then(data => {
+      if (data.statusCode != 200) {
+        res.sendStatus(data.statusCode)
+      } else {
+        res.send(data.data)
+      }
+    })
+    .catch(err => handleError(res, err));
+});
+
+app.get('/api/event', (req, res) => {
+  cloudant
+    .findevent()
+    .then(data => {
+      if (data.statusCode != 200) {
+        res.sendStatus(data.statusCode)
+      } else {
+        res.send(data.data)
+      }
+    })
+    .catch(err => handleError(res, err));
+});
+
 app.get('/api/reply', (req, res) => {
   cloudant
     .findReply()
@@ -234,26 +260,6 @@ app.post('/api/post', (req, res) => {
     .catch(err => handleError(res, err));
 });
 
-app.post('/api/reply', (req, res) => {
-  if (!req.body.description) {
-    return res.status(422).json({ errors: "Any comment needs to be mentioned"});
-  }
-  const type = 'reply';
-  const description = req.body.description || '';
-  const userID = req.body.userID || '';
-
-
-  cloudant
-    .replycreate(description, userID)
-    .then(data => {
-      if (data.statusCode != 201) {
-        res.sendStatus(data.statusCode)
-      } else {
-        res.send(data.data)
-      }
-    })
-    .catch(err => handleError(res, err));
-});
 
 app.post('/api/reply', (req, res) => {
   if (!req.body.description) {
@@ -266,6 +272,40 @@ app.post('/api/reply', (req, res) => {
 
   cloudant
     .postreply(description, userID)
+    .then(data => {
+      if (data.statusCode != 201) {
+        res.sendStatus(data.statusCode)
+      } else {
+        res.send(data.data)
+      }
+    })
+    .catch(err => handleError(res, err));
+});
+
+let etypes = ["Volunteering", "Recreation", "Mindfulness", "Other"]
+app.post('/api/event', (req, res) => {
+  if (!req.body.type) {
+    return res.status(422).json({ errors: "Type of item must be provided"});
+  }
+  if (!types.includes(req.body.type)) {
+    return res.status(422).json({ errors: "Type of item must be one of " + types.toString()});
+  }
+  if (!req.body.name) {
+    return res.status(422).json({ errors: "Name of item must be provided"});
+  }
+  if (!req.body.contact) {
+    return res.status(422).json({ errors: "A method of conact must be provided"});
+  }
+  const type = req.body.type;
+  const name = req.body.name;
+  const description = req.body.description || '';
+  const userID = req.body.userID || '';
+  const time= req.body.time || '';
+  const vlocation = req.body.vlocation || '';
+  const contact = req.body.contact;
+
+  cloudant
+    .createevents(type, name, contact, description, vlocation, time, userID)
     .then(data => {
       if (data.statusCode != 201) {
         res.sendStatus(data.statusCode)

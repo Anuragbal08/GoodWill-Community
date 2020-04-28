@@ -80,7 +80,7 @@ const PostSearch = function ({ navigation }) {
   } else {
     return (
       <View style={styles.emptyListView}>
-        <Text style={styles.emptyListText}>Info Wall have no post listed</Text>
+        <Text style={styles.emptyListText}>Notice Board is empty</Text>
       </View>
     )
   }

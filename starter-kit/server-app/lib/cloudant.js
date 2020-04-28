@@ -97,7 +97,7 @@ function find(type, partialName, userID) {
         if (userID) {
             selector['userID'] = userID;
         }
-        selector['itemtype'] = 'Donation'
+        
         db.find({ 
             'selector': selector
         }, (err, documents) => {
@@ -109,8 +109,6 @@ function find(type, partialName, userID) {
         });
     });
 }
-
-
 
 /**
  * Delete a resource that matches a ID.
@@ -166,120 +164,6 @@ function create(type, name, description, quantity, location, contact, userID) {
             quantity: quantity,
             location: location,
             contact: contact,
-	    itemtype: 'Donation',
-            userID: userID,
-            whenCreated: whenCreated
-        };
-        db.insert(item, (err, result) => {
-            if (err) {
-                console.log('Error occurred: ' + err.message, 'create()');
-                reject(err);
-            } else {
-                resolve({ data: { createdId: result.id, createdRevId: result.rev }, statusCode: 201 });
-            }
-        });
-    });
-}
-
-/**
- * Find all Posts .
- *  * 
- * @return {Promise} Promise - 
- *  resolve(): all posts objects 
- *          could be located that matches. 
- *  reject(): the err object from the underlying data store
- */
-
-
-function findPost() {
-    return new Promise((resolve, reject) => {
-        let selector = { type: 'post' }
-        db.find({ 
-            'selector': selector
-        }, (err, documents) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ data: JSON.stringify(documents.docs), statusCode: 200});
-            }
-        });
-    });
-}
-function postcreate(description, userID) {
-    return new Promise((resolve, reject) => {
-        let itemId = uuidv4();
-        let whenCreated = Date.now();
-        let item = {
-            _id: itemId,
-            id: itemId,
-	    type: 'post',
-	    name: 'Awantika',
-            description: description,
-            userID: userID,
-            whenCreated: whenCreated
-        };
-        db.insert(item, (err, result) => {
-            if (err) {
-                console.log('Error occurred: ' + err.message, 'create()');
-                reject(err);
-            } else {
-                resolve({ data: { createdId: result.id, createdRevId: result.rev }, statusCode: 201 });
-            }
-        });
-    });
-}
-
-/** Reply Related functions
-*/
-
-function replycreate(description, userID) {
-    return new Promise((resolve, reject) => {
-        let itemId = uuidv4();
-        let whenCreated = Date.now();
-        let item = {
-            _id: itemId,
-            id: itemId,
-	    type: 'reply',
-	    name: 'Awantika',
-            description: description,
-            userID: userID,
-            whenCreated: whenCreated
-        };
-        db.insert(item, (err, result) => {
-            if (err) {
-                console.log('Error occurred: ' + err.message, 'create()');
-                reject(err);
-            } else {
-                resolve({ data: { createdId: result.id, createdRevId: result.rev }, statusCode: 201 });
-            }
-        });
-    });
-}
-
-function findReply() {
-    return new Promise((resolve, reject) => {
-        let selector = { type: 'reply'}
-        db.find({ 
-            'selector': selector
-        }, (err, documents) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ data: JSON.stringify(documents.docs), statusCode: 200});
-            }
-        });
-    });
-}
-function postreply(description, userID) {
-    return new Promise((resolve, reject) => {
-        let itemId = uuidv4();
-        let whenCreated = Date.now();
-        let item = {
-            _id: itemId,
-            id: itemId,
-	    type: 'reply',
-	    name: 'Awantika',
-            description: description,
             userID: userID,
             whenCreated: whenCreated
         };
@@ -347,66 +231,5 @@ module.exports = {
     deleteById: deleteById,
     create: create,
     update: update,
-    find: find,
-    postcreate: postcreate,
-    findPost: findPost
+    find: find
   };
-
-
-function create_service(type, name, description, quantity, location, contact, userID) {
-    return new Promise((resolve, reject) => {
-        let itemId = uuidv4();
-        let whenCreated = Date.now();
-        let item = {
-            _id: itemId,
-            id: itemId,
-            type: type,
-            name: name,
-            description: description,
-            location: location,
-            contact: contact,
-	        itemtype: 'service',
-            userID: userID,
-            whenCreated: whenCreated
-        };
-        db.insert(item, (err, result) => {
-            if (err) {
-                console.log('Error occurred: ' + err.message, 'create()');
-                reject(err);
-            } else {
-                resolve({ data: { createdId: result.id, createdRevId: result.rev }, statusCode: 201 });
-            }
-        });
-    });
-}
-
-
-function update_service(id, type, name, description, quantity, location, contact, userID) {
-    return new Promise((resolve, reject) => {
-        db.get(id, (err, document) => {
-            if (err) {
-                resolve({statusCode: err.statusCode});
-            } else {
-                let item = {
-                    _id: document._id,
-                    _rev: document._rev,            // Specifiying the _rev turns this into an update
-                }
-                if (type) {item["type"] = type} else {item["type"] = document.type};
-                if (name) {item["name"] = name} else {item["name"] = document.name};
-                if (description) {item["description"] = description} else {item["description"] = document.description};
-                if (location) {item["location"] = location} else {item["location"] = document.location};
-                if (contact) {item["contact"] = contact} else {item["contact"] = document.contact};
-                if (userID) {item["userID"] = userID} else {item["userID"] = document.userID};
- 
-                db.insert(item, (err, result) => {
-                    if (err) {
-                        console.log('Error occurred: ' + err.message, 'create()');
-                        reject(err);
-                    } else {
-                        resolve({ data: { updatedRevId: result.rev }, statusCode: 200 });
-                    }
-                });
-            }            
-        })
-    });
-}

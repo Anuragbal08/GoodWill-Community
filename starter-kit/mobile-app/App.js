@@ -1,24 +1,26 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
+
 import {  Button,  StyleSheet,  Image,  TouchableOpacity,  Text,  View,  ShadowPropTypesIOS } from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-
 import LoadingScreen from './src/screens/loading';
 import Chat from './src/screens/chat';
-//import AddEvents from './src/screens/events-add';
+import AddEvents from './src/screens/events-add';
+import Events from './src/screens/events-all';
 import PostSearch from './src/screens/Info-wall';
 import Post from './src/screens/post';
 import MyResources from './src/screens/resources-my';
 import SearchResources from './src/screens/resources-search';
-import AddEvents from './src/screens/events-add';
-import AllEvents from './src/screens/events-all';
 import AddResource from './src/screens/resource-add';
 import EditResource from './src/screens/resource-edit';
+import SearchEvents from './src/screens/events-search';
+import Members from './src/screens/members'
 import AddService from './src/screens/addservices';
-import Helpline from './src/screens/helpline';
+import Helpline from './src/screens/helpline'
+import Notice from './src/screens/notice'
 
 const Stack = createStackNavigator();
 
@@ -29,6 +31,7 @@ const HomeStackOptions = ({navigation}) => {
     ),
   };
 };
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
@@ -47,9 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
-
 {
-
   /*
 const App = () => {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -58,7 +59,7 @@ const App = () => {
       setIsLoading(false);
     }, 500);
   }, []);
-​
+
   if (isLoading) {
     return <LoadingScreen />;
   } else {
@@ -85,10 +86,10 @@ const HomeScreen = ({navigation}) => (
 
     <View style={styles.container}>
       <View style={styles.imageRow}>
-        <TouchableOpacity
+      <TouchableOpacity
           onPress=
           {() => {
-            navigation.navigate('Chat');
+            navigation.navigate('Notice');
           }}>
           <View style={{alignItems: 'center'}}>
             <Image source={require('./src/images/notice.png')} />
@@ -99,7 +100,7 @@ const HomeScreen = ({navigation}) => (
         <TouchableOpacity
           onPress=
           {() => {
-            navigation.navigate('AddEvents');
+            navigation.navigate('Events');
           }}>
           <View style={{alignItems: 'center'}}>
             <Image source={require('./src/images/events.png')} />
@@ -130,6 +131,8 @@ const HomeScreen = ({navigation}) => (
             <Text>Helpline</Text>
           </View>
         </TouchableOpacity>
+
+
         <TouchableOpacity
           onPress=
           {() => {
@@ -157,7 +160,7 @@ const HomeScreen = ({navigation}) => (
       <TouchableOpacity
           onPress=
           {() => {
-            navigation.navigate('Chat');
+            navigation.navigate('Members');
           }}>
           <View style={{alignItems: 'center'}}>
             <Image source={require('./src/images/members.png')} />
@@ -165,11 +168,7 @@ const HomeScreen = ({navigation}) => (
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress=
-          {() => {
-            navigation.navigate('Chat');
-          }}>
+        <TouchableOpacity>
           <View style={{alignItems: 'center'}}>
             <Image source={require('./src/images/groups.png')} />
             <Text>Groups</Text>
@@ -188,7 +187,7 @@ const HomeScreen = ({navigation}) => (
         </TouchableOpacity>
       </View>
     </View>
-    </View>
+  </View>
 );
 
 export default function App() {
@@ -196,15 +195,24 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoadingScreen">
         <Stack.Screen name="Home" component={HomeScreen} options={HomeStackOptions} />
-        <Stack.Screen name="AddEvents" component={AddEvents} />
+        <Stack.Screen name="Events" component={Events} />
         <Stack.Screen name="PostSearch" component={PostSearch} />
         <Stack.Screen name="Post" component={Post} />
-        <Stack.Screen name="MyResources" component={MyResources} />
+        <Stack.Screen name="MyResources" component={MyResources}/>
+        <Stack.Screen name="AddResource" component={AddResource}/>           
+        <Stack.Screen name="AddEvents" component={AddEvents}/>        
+        <Stack.Screen name="EditResource" component={EditResource}/>
         <Stack.Screen name="SearchResources" component={SearchResources} />
+        <Stack.Screen name="SearchEvents" component={SearchEvents} />
         <Stack.Screen name="Chat" component={Chat} />
+        <Stack.Screen name="Members" component={Members} />
         <Stack.Screen name="Helpline" component={Helpline} />
-        <Stack.Screen name="AddService" component={AddService} />   
+        <Stack.Screen name="AddService" component={AddService} />
+        <Stack.Screen name="Notice" component={Notice} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+
+
