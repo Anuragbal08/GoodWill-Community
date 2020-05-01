@@ -14,7 +14,6 @@ import {search, userID} from '../lib/utils';
 const styles = StyleSheet.create({
   flatListView: {
     backgroundColor: '#FFF',
-    flex: 1,
   },
   itemTouchable: {
     flexDirection: 'column',
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const MyResources = function ({navigation}) {
+const MyResources = function ({navigation}) { 
   const [items, setItems] = React.useState([]);
 
   React.useEffect(() => {
@@ -84,7 +83,7 @@ const MyResources = function ({navigation}) {
       <TouchableOpacity
         style={styles.itemTouchable}
         onPress={() => {
-          navigation.navigate('Edit Donation', {item: props});
+          props.navigation.navigate('Edit Donation', {item: props});
         }}>
         <View style={styles.itemView}>
           <Text style={styles.itemName}>{props.name}</Text>
@@ -99,15 +98,23 @@ const MyResources = function ({navigation}) {
     return (
       <View>
       <View style={styles.listButtons}>
-          <Button title='Add Donation' />
-          <Button title='Edit Donation' />
-      </View>
+          <Button title='Add Donation' onPress=
+          {() => {
+            navigation.navigate('AddResource');
+          }} />
+          <Button title='Edit Donation' onPress=
+          {() => {
+            navigation.navigate('EditResource');
+          }} />
+          
+        </View>
       <FlatList
         style={styles.flatListView}
         data={items}
         renderItem={({item}) => <Item {...item} />}
         keyExtractor={(item) => item.id || item['_id']}
-      /></View>
+      />
+      </View>
     );
   } else {
     return (
